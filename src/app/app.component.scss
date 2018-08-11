@@ -1,3 +1,5 @@
+$font: Muller, Roboto, Helvetica, sans-serif;
+
 .outer {
   position:relative;
   width:100%;
@@ -9,7 +11,156 @@
   height:100%;
   display:flex;
 }
-agm-map {
-  width:100%;
-  height:100%;
+.g-map {
+  flex:1;
+
+  agm-map {
+    width:100%;
+    height:100%;
+  }
 }
+
+/* Панель информации */
+.info {
+  position:relative;
+  width:28.9%;
+  min-width:400px;
+  height:100%;
+  padding:97px 66px 36px 0;
+  box-shadow: -5px 3px 15px 0 hsla(300, 0%, 61%, .25);
+
+  .scrollWrapper {
+    height:inherit;
+    min-height:100%;
+
+    .wrapper {
+      min-height:100%;
+      display:flex;
+      flex-direction: column;
+      padding:0 0 0 96px;
+
+      @media(max-width:1400px) {
+        padding:0 0 0 66px;
+      }
+    }
+
+  }
+
+  @media(max-width:1400px) {
+    padding:97px 30px 34px 0;
+  }
+}
+.logo-zone {
+  position:absolute;
+  top:0;
+  left:0;
+  background:#fff;
+  width:inherit;
+  height:97px;
+}
+.logo-box {
+  position:absolute;
+  top:35px;
+  left:96px;
+  width:187px;
+  height:27px;
+
+  @media(max-width:1400px) {
+    left:66px;
+  }
+}
+
+/* Меню */
+.ul-menu {
+  list-style-type:none;
+  margin:21px 0;
+  padding:0;
+
+  @media(max-width:1400px) {
+    margin:0;
+  }
+
+  li {
+    line-height:47px;
+    margin:0 0 9px 0;
+    text-transform:uppercase;
+    font-family: $font;
+    font-size:21px;
+    font-weight:300;
+    letter-spacing:2.67px;
+
+    a {
+      text-decoration:none;
+
+      &.active {font-weight:400;}
+
+      &:link {color:#000;}
+      &:visited {color:#000;}
+      &:hover {color:#000;}
+      &:active {color:#000;}
+    }
+  }
+}
+/* Конец меню */
+
+/* Адреса */
+.addresses {
+  margin:auto 0 0 0;
+
+  .address {
+    font-family:$font;
+    font-weight:300;
+    font-size:16px;
+    line-height:24px;
+    letter-spacing:.2px;
+    margin:0 0 15px 0;
+    position:relative;
+    cursor:pointer;
+
+    &.active {
+      font-weight:400;
+    }
+  }
+}
+/* Конец адресов */
+
+/* Конец панели информации */
+
+/* Кастомизация скроллбара */
+/deep/ {
+  .mCSB_container.mCS_no_scrollbar_y {
+    min-height:100%;
+  }
+  .mCS-dark-2.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background-color: rgba(0, 224, 169, 0.75);
+  }
+  .mCS-dark-2.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
+  .mCS-dark-2.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+  .mCS-dark-2.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
+    background-color: rgba(0, 224, 169, 1);
+  }
+}
+
+/* Конец кастомизации скроллбара */
+
+/* Иконки */
+.hpmd-icon {
+  display:inline-block;
+}
+.icon-msk {
+  width:27px;
+  height:27px;
+}
+.icon-spb {
+  width:23px;
+  height:24px;
+}
+.icon-move-left {
+  position:absolute;
+  left:-58px;
+
+  @media(max-width:1400px) {
+    left:-46px;
+  }
+}
+/* Конец иконок */
