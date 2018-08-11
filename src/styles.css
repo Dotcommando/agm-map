@@ -31,7 +31,7 @@ html, body {
   margin:0;
   padding:0;
   max-width:100%;
-  min-width:320px;
+  min-width:425px; /* Mobile - M */
   height:100%;
   position:relative;
   font-size:16px;
