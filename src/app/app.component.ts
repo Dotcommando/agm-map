@@ -102,6 +102,10 @@ export class AppComponent implements OnInit {
     // this.icon.scaledSize.height = 60;
   }
 
+  closeChart(i: number) {
+    this.showChart[i] = false;
+  }
+
   fillLabels() {
     const shouldFillLabels = (this.labels.length <= 0);
     if (!shouldFillLabels) { return; }

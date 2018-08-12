@@ -35,7 +35,7 @@
           [iconUrl]="icon"
           [ngClass]="{'active': showChart[j]}">
 
-          <agm-info-window>
+          <agm-info-window (infoWindowClose)="closeChart(j)">
             <canvas baseChart width="400" height="150"
                     [datasets]="memoGetData(s.name, s.id)"
                     [labels]="labels"
