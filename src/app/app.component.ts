@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 import '../assets/data/data.js';
 import '../assets/data/stations.js';
 
@@ -28,6 +29,27 @@ export class AppComponent implements OnInit {
     return this._activeAddr;
   }
 
+  stations: any;
+
+  labels: string[] = [];
+
+  barChartData: any[] = [];
+
+  barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  showChart: boolean[] = [];
+
+  icon = {
+    url: '/assets/images/marker.svg',
+    scaledSize: {
+      width: 20,
+      height: 30
+    }
+  };
+
   zoom = 15;
 
   lat = 55.709944041168015;
@@ -52,13 +74,6 @@ export class AppComponent implements OnInit {
   };
 
   markers: Marker[] = [
-    // {
-    //   lat: 55.76191328269146,
-    //   lng: 37.63752769230757,
-    //   label: 'A',
-    //   draggable: false,
-    //   url: '/assets/images/email.png'
-    // },
     {
       lat: this.msk.lat,
       lng: this.msk.lng,
@@ -77,19 +92,59 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  memoGetData: (name: string, id: string) => any = _.memoize(this.getData);
+
   makeActiveAddr(addr: 'msk' | 'spb') {
     this.activeAddr = addr;
   }
 
-  ngOnInit() {
-    this.activeAddr = 'msk';
-    console.log(data);
-    console.log(stations);
+  renderGraphics(i: number) {
+    this.showChart[i] = true;
+    // this.icon.scaledSize.width = 40;
+    // this.icon.scaledSize.height = 60;
+  }
+
+  fillLabels() {
+    const shouldFillLabels = (this.labels.length <= 0);
+    if (!shouldFillLabels) { return; }
+    const checkins = data.checkins_timestamps;
+    const len = checkins.length;
+    for (let i = 0; i < len; i++) {
+      this.labels.push(checkins[i].time);
+    }
+  }
+
+  getData(name: string, id: string): any[] {
+    const checkins = data.checkins_timestamps;
+    const targetStationCheckins = [];
+    const len = checkins.length;
+    for (let i = 0; i < len; i++) {
+      const point = checkins[i].stations_checkins_count.find((item) => item.id_station === id);
+      if (!!point) {
+        targetStationCheckins.push(parseInt(point.count, 10));
+      }
+    }
+    return [{data: targetStationCheckins, label: name}];
   }
 
   mapClicked(event) {
-    console.log(event.coords.lat);
-    console.log(event.coords.lng);
+    console.log(event.coords.lat, event.coords.lng);
+  }
+
+  ngOnInit() {
+    this.activeAddr = 'spb';
+    const len = stations.length;
+    this.stations = [];
+    for (let i = 0; i < len; i++) {
+      this.showChart[i] = false;
+      this.stations.push({
+        lat: parseFloat(stations[i].lat),
+        lng: parseFloat(stations[i].lng),
+        id: stations[i].id,
+        name: stations[i].name
+      });
+    }
+    this.fillLabels();
   }
 
 }
