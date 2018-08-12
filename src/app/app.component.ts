@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
 
   stations: any;
 
+  /* Информация для формирования графика */
   labels: string[] = [];
 
   barChartData: any[] = [];
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit {
   };
 
   showChart: boolean[] = [];
+  /* Конец информации для формирования графика */
 
   icon = {
     url: '/assets/images/marker.svg',
@@ -65,14 +67,6 @@ export class AppComponent implements OnInit {
     lng: 30.28545512988478
   };
 
-  scrollbarOptions = {
-    axis: 'y',
-    theme: 'dark-2',
-    autoHideScrollbar: true,
-    scrollInertia: 300,
-    alwaysShowScrollbar: 1
-  };
-
   markers: Marker[] = [
     {
       lat: this.msk.lat,
@@ -92,6 +86,10 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  /**
+   * Мемоизируем вывод информации для формирования графика,
+   * т.к. это чистая функция.
+   */
   memoGetData: (name: string, id: string) => any = _.memoize(this.getData);
 
   makeActiveAddr(addr: 'msk' | 'spb') {
@@ -114,6 +112,12 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /**
+   * Получаем данные для графика на каждый момент времени для точки.
+   *
+   * @param name
+   * @param id
+   */
   getData(name: string, id: string): any[] {
     const checkins = data.checkins_timestamps;
     const targetStationCheckins = [];
@@ -127,6 +131,10 @@ export class AppComponent implements OnInit {
     return [{data: targetStationCheckins, label: name}];
   }
 
+  /**
+   * Получаем координаты точки по клику на карте.
+   * @param event
+   */
   mapClicked(event) {
     console.log(event.coords.lat, event.coords.lng);
   }

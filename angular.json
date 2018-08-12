@@ -21,14 +21,11 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css",
-              "./node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
+              "src/styles.css"
             ],
             "scripts": [
               "src/assets/data/data.js",
               "src/assets/data/stations.js",
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
               "./node_modules/chart.js/dist/Chart.bundle.min.js"
             ]
           },
@@ -79,13 +76,10 @@
             "scripts": [
               "src/assets/data/data.js",
               "src/assets/data/stations.js",
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
               "./node_modules/chart.js/dist/Chart.bundle.min.js"
             ],
             "styles": [
-              "src/styles.css",
-              "./node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
+              "src/styles.css"
             ],
             "assets": [
               "src/assets",
